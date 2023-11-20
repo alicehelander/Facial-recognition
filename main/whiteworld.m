@@ -21,5 +21,5 @@ b_sensor = beta.*b;
 
 % Visa den justerade bilden
 whiteworld_img = cat(3, r_sensor, g_sensor, b_sensor);
-imshow(whiteworld_img)
+% imshow(whiteworld_img)
 %imwrite(whiteworld_img,'../TNM034/Facial-recognition/facedetection/whiteworld.png')
