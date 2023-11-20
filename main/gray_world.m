@@ -20,4 +20,3 @@ b_sensor = beta.*b;
 
 % Visa den justerade bilden
  grayworld_img = cat(3, r_sensor, g_sensor, b_sensor);
-imshow(greyworld_img)
