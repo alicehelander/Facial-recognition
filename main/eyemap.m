@@ -44,6 +44,6 @@ imshow(result,[]);
 
 %Normalizing
 result = (result./max(result(:)));
-imshow(result,[]);
+%imshow(result,[]);
 %imwrite(result,'../TNM034/Facial-recognition/db/DB0/eyedetection/db0test2.png')
 end
