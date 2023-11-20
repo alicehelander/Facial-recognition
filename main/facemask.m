@@ -1,13 +1,12 @@
-% light compensation
-function() = facemask
+function [bin_img] = facemask(img)
+
 img = imread('../TNM034/Facial-recognition/facedetection/grayworld3.png')
 
-% binary image 
+% Binary image 
 bin_img = zeros(size(img,1),size(img,2));
 
 % YCbCr
 YCbCr_img = rgb2ycbcr(img);
-%C1 = double(YCbCr_img);
 imshow(YCbCr_img);
 
 y=YCbCr_img(:,:,1);
@@ -23,8 +22,6 @@ for k = 1:size(row)
 end
 
 % Morphology
-%kernel = strel('disk',20);
-%bin_img = imclose(bin_img,kernel);
 SE = strel('disk',4);
 bin_img = imopen(bin_img, SE);
 SE1 = strel('disk',25);
@@ -37,3 +34,4 @@ bin_img = imbinarize(bin_img,0.9);
 
 binary_img = bwareafilt(bin_img,1);
 imshow(bin_img)
+end
