@@ -1,4 +1,4 @@
-function grayworld_img = grayworld(C1)
+function greyworld_img = greyworld(C1)
 
 % Dela upp färgkanalerna
 r = C1(:,:,1); % Röd kanal
@@ -19,5 +19,5 @@ g_sensor = g;
 b_sensor = beta.*b;
 
 % Visa den justerade bilden
- grayworld_img = cat(3, r_sensor, g_sensor, b_sensor);
+greyworld_img = cat(3, r_sensor, g_sensor, b_sensor);
 imshow(greyworld_img)
