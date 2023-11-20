@@ -33,5 +33,5 @@ bin_img = histeq(bin_img,target);
 bin_img = imbinarize(bin_img,0.9);
 
 binary_img = bwareafilt(bin_img,1);
-%imshow(bin_img)
+%imshow(binary_img)
 end
