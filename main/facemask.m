@@ -1,14 +1,10 @@
 function [binary_img] = facemask(img)
 
-img = imread('../TNM034/Facial-recognition/facedetection/grayworld3.png')
-% img = imread('../db/DB0/db0_1.jpg')
-
 % Binary image 
 bin_img = zeros(size(img,1),size(img,2));
 
 % YCbCr
 YCbCr_img = rgb2ycbcr(img);
-imshow(YCbCr_img);
 
 y=YCbCr_img(:,:,1);
 cb=YCbCr_img(:,:,2);
@@ -34,5 +30,5 @@ bin_img = histeq(bin_img,target);
 bin_img = imbinarize(bin_img,0.9);
 
 binary_img = bwareafilt(bin_img,1);
-% imshow(bin_img)
+
 end
