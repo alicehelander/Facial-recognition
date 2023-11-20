@@ -1,4 +1,4 @@
-function grayworld_img = greyworld(C1)
+function greyworld_img = greyworld(C1)
 
 % Dela upp färgkanalerna
 r = C1(:,:,1); % Röd kanal
