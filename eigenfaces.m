@@ -1,4 +1,4 @@
-function [u_i, meanface] = eigenfaces(input)
+function [meanface] = eigenfaces(input)
 
 % 2. Represent the image as a n-vector "X_i"
 M = size(input,3);   % M is the total number of images
