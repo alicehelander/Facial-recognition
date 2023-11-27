@@ -11,8 +11,8 @@ if isempty(B)
 else 
     for k = 1:length(B)
         boundary = B{k};
-        x = boundary(:,2);
-        y = boundary(:,1);
+        x = boundary(:,1);
+        y = boundary(:,2);
     end
 end
 
