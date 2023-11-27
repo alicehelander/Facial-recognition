@@ -19,18 +19,13 @@ eye1 = [selected_eyes(1),selected_eyes(3)];
 eye2 = [selected_eyes(2),selected_eyes(4)];
 
 % Find the angle between the eyes
-
 angle = atan2(eye2(2)-eye1(2),eye2(1) - eye1(1));
 
-
 % Check additional conditions for selecting the right eye based on the desired angle
-if abs(rad2deg(angle)) > desired_angle_tolerance
+if abs(rad2deg(angle)) > 4
     for i = 2:length(selected_eye_indices)
-        % Add your own conditions for selecting the right eye
         % Check if the x-coordinate is within a certain range
-        if (abs((selected_eyes(i, 1) - eye1(1))) > 120) && ...
-           (abs((selected_eyes(i, 1) - eye1(1))) < 150) && ...
-           (i ~= length(selected_eye_indices))
+        if (abs((selected_eyes(i, 1) - eye1(1))) > 120) && (abs((selected_eyes(i, 1) - eye1(1))) < 150) &&  (selected_eyes(i, 2) < mouth_center(2)) (i ~= length(selected_eye_indices))
             eye2 = selected_eyes(i, :);
             break;  % Exit the loop once a suitable eye is found
         end
@@ -40,9 +35,5 @@ end
 % Visualize the line connecting the eyes
 hold on;
 plot([eye1(1), eye2(1)], [eye1(2), eye2(2)], 'LineWidth', 2, 'Color', 'r');
-
-% Display the angle between the eyes
-text((eye1(1) + eye2(1)) / 2, (eye1(2) + eye2(2)) / 2, sprintf('Angle: %.2f degrees', rad2deg(angle)), 'Color', 'r');
-
 
 end
