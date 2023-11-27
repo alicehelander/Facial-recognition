@@ -22,12 +22,19 @@ eye2 = [selected_eyes(2),selected_eyes(4)];
 angle = atan2(eye2(2)-eye1(2),eye2(1) - eye1(1));
 
 % Check additional conditions for selecting the right eye based on the desired angle
-if abs(rad2deg(angle)) > 4
+if abs(rad2deg(angle)) > 4 && size(selected_eyes, 1) >= 2
     for i = 2:length(selected_eye_indices)
-        % Check if the x-coordinate is within a certain range
-        if (abs((selected_eyes(i, 1) - eye1(1))) > 120) && (abs((selected_eyes(i, 1) - eye1(1))) < 150) && (i ~= length(selected_eye_indices))
-            eye2 = selected_eyes(i, :);
-            break;  % Exit the loop once a suitable eye is found
+      % Check if the x-coordinate is within a certain range
+        x_diff = abs(selected_eyes(i, 1) - eye1(1));
+        y_diff = abs(selected_eyes(i, 2) - eye1(2));
+        
+        if (x_diff > 120) && (x_diff < 150) && (selected_eyes(i, 2) < mouth_center(2)) && (y_diff < 50)
+            if x_diff > 0 % Check if the selected eye is on the right side
+                eye2 = selected_eyes(i, :);
+                break;  % Exit the loop once a suitable right eye is found
+            else
+                eye1 = selected_eyes(i, :);
+            end
         end
     end
 end
