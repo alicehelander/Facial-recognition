@@ -6,8 +6,8 @@ bw = bwareaopen(img,minSize);
 [B] = bwboundaries(bw,"noholes");
 
 if length(B) < 2
-    indexX = -1;
-    indexY = -1; 
+    indexX = [];
+    indexY = []; 
 else 
     for k = 1:length(B)
         boundary = B{k};
