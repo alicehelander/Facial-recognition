@@ -1,5 +1,5 @@
 function hybrid_mask = hybridEyemask(img)
-
+C1 = img;
 % C1 = imread('../TNM034/Facial-recognition/db/DB0/db0_1.jpg');
 % imshow(C1)
 C2 = rgb2ycbcr(C1);
@@ -34,8 +34,11 @@ p=1+imerode(y,SE);
 EyemapL=o./p;
 % imshow(EyemapL, []);
 
+%Gr
+
 %Eyemap
 Eyemap = EyemapC.*EyemapL;
+
 % imshow(Eyemap,[]);
 
 %Dilated & masked
