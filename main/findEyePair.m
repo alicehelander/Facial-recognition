@@ -1,5 +1,6 @@
 function [eye1,eye2,angle] = findEyePair(indexX,indexY,mouth_center)
 
+
 % Calculate the distance of each eye center from the mouth center
 eye_centers = [indexX(:) + indexY(:)/2, indexY(:)];
 distances = sqrt(sum((eye_centers - mouth_center).^2, 2));
@@ -7,6 +8,12 @@ distances = sqrt(sum((eye_centers - mouth_center).^2, 2));
 
 % Find the indices of the two eyes with the closest distance to the mouth
 [~, sorted_indices] = sort(distances);
+
+% Ensure there are at least two detected eyes
+%if length(sorted_indices) < 2
+    %error('Not enough detected eyes.');
+%end
+
 selected_eye_indices = sorted_indices(1:2);
 
 % Extract the coordinates of the selected eyes
@@ -28,7 +35,7 @@ if abs(rad2deg(angle)) > 4 && size(selected_eyes, 1) >= 2
         x_diff = abs(selected_eyes(i, 1) - eye1(1));
         y_diff = abs(selected_eyes(i, 2) - eye1(2));
         
-        if (x_diff > 120) && (x_diff < 150) && (selected_eyes(i, 2) < mouth_center(2)) && (y_diff < 50)
+        if (x_diff > 80) && (x_diff < 120) && (selected_eyes(i, 2) < mouth_center(2)) && (y_diff < 50)
             if x_diff > 0 % Check if the selected eye is on the right side
                 eye2 = selected_eyes(i, :);
                 break;  % Exit the loop once a suitable right eye is found
