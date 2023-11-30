@@ -6,3 +6,5 @@ mouth_mask = imbinarize(mouth_map);
 mouthSE = strel('disk',5);
 mouth_mask = imopen(mouth_mask,mouthSE);
 end
+
+
