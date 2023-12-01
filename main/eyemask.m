@@ -1,7 +1,7 @@
 function eye_mask = eyemask(eye_map,face_mask)
 eye_map = eye_map./(max(max(eye_map)));
-eye_candidates = 3;
-thresh = 0.8;
+eye_candidates = 2;
+thresh = 0.9;
 
 for i = thresh:-0.1:0
     eye_mask = imbinarize(eye_map,i);
