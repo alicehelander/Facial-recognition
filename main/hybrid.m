@@ -4,7 +4,6 @@ img = im2double(img);
 C2 = rgb2ycbcr(img);
 C3 = double(C2);
 
-
 y=C3(:,:,1);
 cb=C3(:,:,2);
 cr=C3(:,:,3);
@@ -12,7 +11,6 @@ ccb=cb.^2;
 
 ccr=(1-cr).^2;
 cbcr=ccb./cr;
-
 
 %EyemapC
 EyemapC=(ccb+ccr+cbcr)/3;
