@@ -35,8 +35,8 @@ edges = imerode(edges,erode_edge);
 % imshow(edges)
 
 %Eyemap
-illu = imbinarize(EyemapL,0.9); %Threshholds might be wrong
-col = imbinarize(EyemapC,0.9);
+illu = imbinarize(EyemapL,0.5); %Threshholds might be wrong
+col = imbinarize(EyemapC,0.5);
 
 IlluCol = illu & col;
 ColEdge = col & edges;
