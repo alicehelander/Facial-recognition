@@ -5,7 +5,7 @@ thresh = 0.9;
 
 for i = thresh:-0.1:0
     eye_mask = imbinarize(eye_map,i);
-    eyeSE = strel('disk',8);
+    eyeSE = strel('disk',12);
     eye_mask = imopen(eye_mask,eyeSE);
     eye_mask = imclose(eye_mask,eyeSE);
     eye_mask = eye_mask & face_mask;
