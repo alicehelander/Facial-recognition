@@ -33,12 +33,13 @@ edges = imerode(edges,erode_edge);
 % imshow(edges)
 
 %Eyemap
-illu = imbinarize(EyemapL,0.5); %Threshholds might be wrong
-col = imbinarize(EyemapC,0.5);
+illu = imbinarize(EyemapL,"adaptive"); %Threshholds might be wrong
+col = imbinarize(EyemapC,"adaptive");
 
 IlluCol = illu & col;
 ColEdge = col & edges;
 IlluEdge = illu & edges;
 
-hybrid_mask = IlluCol | ColEdge |IlluEdge;
+hybrid_mask = IlluCol | ColEdge;
+hybrid_mask = hybrid_mask | IlluEdge;
 end
