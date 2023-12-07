@@ -1,5 +1,5 @@
 function [eye1,eye2] = iterativeEyeFinder(eyes,face_mask,mouth_center,img)
-for radii = 5:1:20
+for radii = 7:1:20
     eye_mask = eyemask(eyes,face_mask,radii);
     [indexX,indexY] = eye_index(eye_mask);
     [eye1 , eye2] = findEyePair(indexX,indexY,mouth_center,img);
