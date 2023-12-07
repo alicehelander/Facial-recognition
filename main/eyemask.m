@@ -1,11 +1,11 @@
-function eye_mask = eyemask(eye_map,face_mask)
+function eye_mask = eyemask(eye_map,face_mask, radii)
 eye_map = eye_map./(max(max(eye_map)));
 eye_candidates = 2;
 thresh = 0.9;
 
 for i = thresh:-0.1:0
     eye_mask = imbinarize(eye_map,i);
-    eyeSE = strel('disk',10);
+    eyeSE = strel('disk',radii);
     eye_mask = imopen(eye_mask,eyeSE);
     eye_mask = imclose(eye_mask,eyeSE);
     eye_mask = eye_mask & face_mask;
