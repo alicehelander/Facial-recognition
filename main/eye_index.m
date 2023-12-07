@@ -1,6 +1,6 @@
 function [indexX, indexY] = eye_index(img)
 
-minSize = 80;
+minSize = 60;
 bw = bwareaopen(img, minSize);
 
 % Use regionprops to get properties of connected components
