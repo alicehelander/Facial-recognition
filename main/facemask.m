@@ -11,7 +11,7 @@ cb=YCbCr_img(:,:,2);
 cr=YCbCr_img(:,:,3);
 
 % Threshold
-[row,col] = find(cb >= 65 & cb <= 200 & cr >= 131 & cr <= 155 & y >= 80);
+[row,col] = find(cb >= 65 & cb <= 200 & cr >= 128 & cr <= 155 & y >= 80);
 
 % Change skin color
 for k = 1:size(row)
