@@ -1,4 +1,4 @@
-function [eye1,eye2] = findEyePair(indexX,indexY,mouth_center,img)
+function [eye1,eye2] = findEyePair(indexX,indexY,mouth_center)
 % Calculate the distance of each eye center from the mouth center
 eye_centers = [indexX(:) + indexY(:)/2, indexY(:)];
 distances = sqrt(sum((eye_centers - mouth_center).^2, 2));
@@ -36,10 +36,6 @@ distances = sqrt(sum((eye_centers - mouth_center).^2, 2));
 % plot([eye1(1), eye2(1)], [eye1(2), eye2(2)], 'LineWidth', 2, 'Color', 'r')
 face_mid = [size(img, 2) / 2, size(img, 1) / 2]; % Mitt av ansiktet
 eye_distances_to_mid = sqrt((indexX - face_mid(1)).^2 + (indexY - face_mid(2)).^2);
-
-% Sortera ögonen baserat på avståndet till ansiktets mitt
-[sorted_mid_distances, sorted_mid_indices] = sort(eye_distances_to_mid);
-
 
 % Välj de två ögonen som är närmast ansiktets mitt
 closest_mid_eye_indices = sorted_mid_indices(1:2);
