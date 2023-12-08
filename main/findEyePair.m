@@ -83,11 +83,11 @@ function [eye1, eye2] = findEyePair(indexX, indexY, mouth_center, img)
     selected_eyes = [indexX(selected_eye_indices), indexY(selected_eye_indices)];
 
     % Visualize the selected eyes
-    figure;
-    imshow(img);
-    hold on;
-    viscircles(selected_eyes, 10, 'EdgeColor', 'r');
-    plot([selected_eyes(1, 1), selected_eyes(2, 1)], [selected_eyes(1, 2), selected_eyes(2, 2)], 'LineWidth', 2, 'Color', 'r');
+%     figure;
+%     imshow(img);
+%     hold on;
+%     viscircles(selected_eyes, 10, 'EdgeColor', 'r');
+%     plot([selected_eyes(1, 1), selected_eyes(2, 1)], [selected_eyes(1, 2), selected_eyes(2, 2)], 'LineWidth', 2, 'Color', 'r');
 
     % Output the coordinates of the selected eyes
     eye1 = selected_eyes(1, :);
