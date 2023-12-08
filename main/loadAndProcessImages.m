@@ -11,3 +11,5 @@ function [DataMatrix, ImageFiles] = loadAndProcessImages(folder_path, commonsize
         DataMatrix(i, :) = reshape(resizeImg, 1, []);
     end
 end
+
+
