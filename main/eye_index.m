@@ -10,8 +10,7 @@ indexX = [];
 indexY = [];
 
 for k = 1:length(stats)
-    if stats(k).Circularity > 0.7 %&& stats(k).Area > 100
-%         stats(k).Area
+    if stats(k).Circularity > 0.7
         indexX = [indexX, stats(k).Centroid(1)];
         indexY = [indexY, stats(k).Centroid(2)];
     end

@@ -18,31 +18,31 @@ ccr=(1-cr).^2;
 cbcr=ccb./cr;
 % imshow(cbcr,[]);
 
-%EyemapC
+% EyemapC
 EyemapC=(ccb+ccr+cbcr)/3;
 % imshow(EyemapC,[])
 
-%Histogram equalization
+% Histogram equalization
 C6=histeq(EyemapC);
 % imshow(C6,[])
 
-%EyemapL
+% EyemapL
 SE=strel('disk',10);
 o=imdilate(y,SE);
 p=1+imerode(y,SE);
 EyemapL=o./p;
 % imshow(EyemapL, []);
 
-%Eyemap
+% Eyemap
 Eyemap = EyemapC.*EyemapL;
 % imshow(Eyemap,[]);
 
-%Dilated & masked
+% Dilated & masked
 C8 = strel(10);
 result = imdilate(Eyemap,C8);
 % imshow(result,[]);
 
-%Normalizing
+% Normalizing
 result = (result./max(result(:)));
 %imshow(result,[]);
 %imwrite(result,'../TNM034/Facial-recognition/db/DB0/eyedetection/db0test2.png')
