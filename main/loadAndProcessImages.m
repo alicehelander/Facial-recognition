@@ -1,5 +1,5 @@
 function [DataMatrix, ImageFiles] = loadAndProcessImages(folder_path, commonsize)
-    ImageFiles = dir(fullfile(folder_path, '*.jpg')); %--------------------------------------------------
+    ImageFiles = dir(fullfile(folder_path, '*.jpg'));
     NumberOfImages = numel(ImageFiles);
     DataMatrix = zeros(NumberOfImages, prod(commonsize));
 
