@@ -1,4 +1,4 @@
-function normalized_face = normalize_face(im)
+function normalized_face = normalize_face(im,commonsize)
 %Function to normalize an image of a face.
 
 % Normalize colors
@@ -11,10 +11,5 @@ mouth_center = [x, y];
 
 selected_eyes = select_eyes(mouth_center,eye_index_x,eye_index_y,im);
 
-normalized_face = crop_img(im,selected_eyes,mouth_center);
-
-
-
-
-
-
+normalized_face = crop_img(im,selected_eyes,mouth_center,commonsize);
+end
