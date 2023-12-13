@@ -1,19 +1,18 @@
 function personIndex = isPersonInSet(img, meanface, eigenVectors, commonsize)
-   
-    load("eigen_data.mat","weights")
+    load("eigen_data.mat", "weights")
 
     knownWeights = weights;
-  
+
     % Normalize the new image
     img = normalize_face(img, commonsize);
     img = im2gray(img);
-    
+
     % Ensure img is a column vector
     img = double(img(:));
-    
+
     % Transpose meanface to match the size of img
     meanface = meanface';
-    
+
     % Subtract meanface from img
     img = img - meanface;
 
@@ -26,25 +25,29 @@ function personIndex = isPersonInSet(img, meanface, eigenVectors, commonsize)
 
     % Iterate over each known face and compute distances
     for i = 1:size(knownWeights, 2)
-        distances = sqrt(sum((knownWeights(:, i) - new_weights').^2, 1))
+        % Compute distances between the known weights and the weights of the new image
+        distances = sqrt(sum((knownWeights(:, i)' - new_weights).^2, 1));
 
-        % Check if the minimum distance is below the threshold
-        if min(distances) < minDistance
-            minDistance = min(distances);
+        % Find the minimum distance
+        currentMinDistance = min(distances);
+
+        % Check if the current minimum distance is below the threshold
+        if currentMinDistance < minDistance
+            minDistance = currentMinDistance;
             personIndex = i;
         end
     end
 
     % Set a distance threshold for matching
-    threshold = 0.1;
-    
+    threshold = 5.0e+06;
+
     % Check if the minimum distance is below the threshold
     if minDistance < threshold
         % Return the index of the most similar person
         return;
     else
         % If no match found, return 0
-        personIndex = 0;
+        personIndex = -1;
     end
 end
 
