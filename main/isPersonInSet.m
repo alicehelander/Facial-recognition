@@ -27,7 +27,7 @@ function personIndex = isPersonInSet(img, meanface, eigenVectors, commonsize)
     for i = 1:size(knownWeights, 2)
         % Compute distances between the known weights and the weights of the new image
         distances = sqrt(sum((knownWeights(:, i)' - new_weights).^2, 1));
-
+%         distances = abs(sum(sum((knownWeights(:, i)' - new_weights), 1)))
         % Find the minimum distance
         currentMinDistance = min(distances);
 
@@ -37,9 +37,9 @@ function personIndex = isPersonInSet(img, meanface, eigenVectors, commonsize)
             personIndex = i;
         end
     end
-
+   
     % Set a distance threshold for matching
-    threshold = 5.0e+06;
+    threshold = 3.0e+04;
 
     % Check if the minimum distance is below the threshold
     if minDistance < threshold

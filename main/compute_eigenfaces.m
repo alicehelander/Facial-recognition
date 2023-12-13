@@ -5,7 +5,5 @@ function [meanface, eigenVectors, weights] = compute_eigenfaces(X,commonsize)
     [eigenVectors,weights] = pca(centered_data);
     %pca: [coeff,score,latent] = pca(centered_data);
     
-
-    
     save("eigen_data.mat","eigenVectors","meanface","weights","commonsize","centered_data")
 end
