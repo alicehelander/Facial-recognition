@@ -1,34 +1,33 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-function id = tnm034(im)
-%
-% im: Image of unknown face, RGB-image in uint8 format in the 
-% range [0,255]
-%
-% id: The identity number (integer) of the identified person,
-% i.e. ‘1’, ‘2’,…,‘16’ for the persons belonging to ‘db1’ 
-% and ‘0’ for all other faces.
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [id] = tnm034(im)
+    % Load precomputed eigenface data
+    load('eigen_data.mat', 'eigenVectors', 'meanface', 'weights', 'commonsize', 'centered_data');
 
-%[mean_face_vector, eigenfaces] = load('eigen_data.mat','mean_vector','eigenVectors');
+    % Normalize and convert the input image to grayscale
+    new_face = normalize_face(im, commonsize);
+    new_face = im2gray(new_face);
 
-% Normalize colors
-img_gw = gray_world(im);
-[~, eye_mask, mouth_mask] = create_masks(img_gw);
+    % Ensure img is a column vector
+    new_face = double(new_face(:));
 
+    % Subtract meanface from input image
+    face_diff = (new_face - meanface');
 
-[x,y] = mouth_index(mouth_mask);
-mouth_center = [x, y]; 
-[eye_index_x,eye_index_y] = eye_index(eye_mask);
+    threshold = 100;
 
-selected_eyes = select_eyes(mouth_center,eye_index_x,eye_index_y,im);
+    % Project the new face onto the principal components space
+    new_face_coeff = eigenVectors' * face_diff;
 
-cropped_image = crop_img(im,selected_eyes,mouth_center);
+    % Calculate distances to each image in the set
+    distances = sqrt(sum((centered_data' * new_face_coeff - face_diff).^2, 1));
 
-imshow(cropped_image)
+    % Check if the minimum distance is below the threshold
+    [minDistance, id] = min(distances);
 
-id = -1;
-
-
-
-
-
+    % Check if the minimum distance is below the threshold
+    if minDistance < threshold
+        % Return the index of the most similar person
+        return;
+    else
+        % If no match found, return 0
+        id = 0;
+    end

@@ -1,0 +1,76 @@
+function [id] = tnm034(im)
+%     % Load precomputed eigenface data
+%     load('eigen_data.mat', 'eigenVectors', 'meanface', 'weights', 'commonsize', 'centered_data');
+% 
+%     % Normalize and convert the input image to grayscale
+%     new_face = normalize_face(im, commonsize);
+%     new_face = im2gray(new_face);
+% 
+%     % Ensure img is a column vector
+%     new_face = double(new_face(:));
+% 
+%     % Subtract meanface from input image
+%     face_diff = (new_face - meanface');
+% 
+%     threshold = 100;
+% 
+%     % Project the new face onto the principal components space
+%     new_face_coeff = eigenVectors' * face_diff;
+% 
+%     % Calculate distances to each image in the set
+%     distances = sqrt(sum((centered_data' * new_face_coeff - face_diff).^2, 1));
+% 
+%     % Check if the minimum distance is below the threshold
+%     [minDistance, id] = min(distances);
+% 
+%     % Check if the minimum distance is below the threshold
+%     if minDistance < threshold
+%         % Return the index of the most similar person
+%         return;
+%     else
+%         % If no match found, return 0
+%         id = 0;
+%     end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% im: Image of unknown face, RGB-image in uint8 format in the 
+% range [0,255]
+%% id: The identity number (integer) of the identified person,
+% i.e. ‘1’, ‘2’,...,‘16’ for the persons belonging to ‘db1’ % and ‘0’ for all other faces.
+%% Your program code
+
+%Normalize input image
+    new_face = normalize_face(im);
+
+%Get feature vector of input
+    load("eigen_data.mat","eigenVectors","meanface","DataMatrix")
+
+    u_i = eigenVectors;
+
+    %Generate feature vector
+    input_featureVector = create_feature_vector(new_face, u_i, meanface);
+
+
+%Compare input feature vector to database
+    
+    featureVectors = create_feature_vector(DataMatrix(1,:));
+    for i = 1:16
+        featureVectors = create_feature_vector()
+    end
+    %Find shortest distance (best match)
+    distances = zeros(1,size(featureVectors,1));    
+    for j = 1:16
+        distances(:,j) = norm(input_featureVector(:) - featureVectors(:,j));
+    end
+    shortest = min(min(distances));
+
+%Return -1 if image is not in database
+    no_match_threshold = 5.0e+06;
+    
+    if(shortest > no_match_threshold)
+        id = 0;
+    else
+        id = find(distances == min(min(distances)));
+    end
+end

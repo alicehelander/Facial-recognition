@@ -10,6 +10,5 @@ mouth_center = [x, y];
 [eye_index_x,eye_index_y] = eye_index(eye_mask);
 
 selected_eyes = select_eyes(mouth_center,eye_index_x,eye_index_y,im);
-
 normalized_face = crop_img(im,selected_eyes,mouth_center,commonsize);
 end

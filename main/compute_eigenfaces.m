@@ -1,8 +1,11 @@
-function [meanface, eigenVectors, weights] = compute_eigenfaces(X)
+function [meanface, eigenVectors, weights] = compute_eigenfaces(X,commonsize)
     % X is a flattened out image (1 x prod(commonsize))
     meanface = mean(X);
     centered_data = X - meanface;
-    [eigenVectors] = pca(centered_data);
-    weights = eigenVectors' * centered_data';
+    [eigenVectors,weights] = pca(centered_data);
+    %pca: [coeff,score,latent] = pca(centered_data);
     
+
+    
+    save("eigen_data.mat","eigenVectors","meanface","weights","commonsize","centered_data")
 end
