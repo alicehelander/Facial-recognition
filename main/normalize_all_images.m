@@ -13,7 +13,6 @@ function [DataMatrix, ImageFiles] = normalize_all_images(folder_path, commonsize
         % Ensure the image is in grayscale
         if size(resizedImage, 3) == 3
             resizedImage = rgb2gray(resizedImage);
-%             imshow(resizedImage)
         end
 
         DataMatrix(i, :) = resizedImage(:)';

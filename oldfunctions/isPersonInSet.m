@@ -15,9 +15,6 @@ function personIndex = isPersonInSet(img, meanface, eigenVectors, commonsize)
 
     % Subtract meanface from img
     meanface_diff = img - meanface;
-   
-
-    
     
     % Project the new image onto the eigenspace
     new_weights = eigenVectors' * meanface_diff;

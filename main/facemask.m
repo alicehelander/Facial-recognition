@@ -21,7 +21,7 @@ end
 % Morphology
 SE = strel('disk',4);
 bin_img = imopen(bin_img, SE);
-imshow(bin_img)
+
 SE1 = strel('disk',25);
 bin_img = imclose(bin_img, SE1);
 
