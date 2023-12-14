@@ -49,6 +49,4 @@ end
         % If no match found, return 0
         id = 0;
     end
-
-
 end

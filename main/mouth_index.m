@@ -8,7 +8,7 @@ function [x, y] = mouth_index(img)
     maxAreaIndex = 0;  % Variable to store the index of the object with the maximum area
 
     for k = 1:length(stats)
-        if stats(k).MajorAxisLength > 2 * stats(k).MinorAxisLength
+        if stats(k).MajorAxisLength > 1.5 * stats(k).MinorAxisLength %check if "mouthshaped"
             if stats(k).Area > maxArea
                 maxArea = stats(k).Area;
                 maxAreaIndex = k;
